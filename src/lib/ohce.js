@@ -1,5 +1,3 @@
-
-let name;
 const MORNING = 'morning';
 const AFTERNOON = 'afternoon';
 const NIGHT = 'night';
@@ -15,7 +13,7 @@ class Ohce {
     this.name = '';
   }
 
-  getDaytime({ time }) {
+  static getDaytime({ time }) {
     const hour = time.getHours();
     if (hour >= 6 && hour < 12) {
       return MORNING;
@@ -24,11 +22,11 @@ class Ohce {
       return AFTERNOON;
     }
     return NIGHT;
-  };
+  }
 
   init({ time, input }) {
     this.name = input;
-    return [`${greetings[this.getDaytime({ time })]} ${this.name}`];
+    return [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`];
   }
 }
 
