@@ -34,7 +34,7 @@ class Ohce {
 
   init({ time, input }) {
     this.name = input;
-    return [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`];
+    return { output: [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`], stop: false };
   }
 
   talk({ word }) {
@@ -44,13 +44,14 @@ class Ohce {
     let output = '';
     if (word === keyWords.stop) {
       output = [`${keyWords.bye} ${this.name}`];
-      return output;
+      console.log('stop word')
+      return { output, stop: true };
     }
     output = [word.split('').reverse().join('')];
     if (word === output[0]) {
       output.push(keyWords.palindromeResp);
     }
-    return output;
+    return { output, stop: false} ;
   }
 }
 

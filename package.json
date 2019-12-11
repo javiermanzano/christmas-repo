@@ -6,7 +6,8 @@
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test/**/*.test.js",
     "test:watch": "./node_modules/mocha/bin/mocha ./test/**/*.test.js --watch",
-    "lint": "eslint --ext .js src"
+    "lint": "eslint --ext .js src",
+    "ohce": "node ./src/index.js"
   },
   "repository": {
     "type": "git",

@@ -17,28 +17,28 @@ describe('ohce tests', () => {
       const time = new Date('2019-12-10T18:30:00.000Z');
       const input = 'Tomás';
       const result = ohce.init({ time, input });
-      expect(Array.isArray(result)).to.equal(true);
+      expect(Array.isArray(result.output)).to.equal(true);
     });
 
     it(`Must say ${greetings.morning}`, () => {
       const time = new Date('2019-12-10T10:30:00.000Z');
       const input = 'Tomás';
       const result = ohce.init({ time, input });
-      expect(result[0]).to.equal(`${greetings.morning} ${input}`);
+      expect(result.output[0]).to.equal(`${greetings.morning} ${input}`);
     });
 
     it(`Must say ${greetings.afternoon}`, () => {
       const time = new Date('2019-12-10T18:30:00.000Z');
       const input = 'Tomás';
       const result = ohce.init({ time, input });
-      expect(result[0]).to.equal(`${greetings.afternoon} ${input}`);
+      expect(result.output[0]).to.equal(`${greetings.afternoon} ${input}`);
     });
 
     it(`Must say ${greetings.night}`, () => {
       const time = new Date('2019-12-10T21:30:00.000Z');
       const input = 'Tomás';
       const result = ohce.init({ time, input });
-      expect(result[0]).to.equal(`${greetings.night} ${input}`);
+      expect(result.output[0]).to.equal(`${greetings.night} ${input}`);
     });
   });
 
@@ -47,11 +47,11 @@ describe('ohce tests', () => {
       const time = new Date('2019-12-10T10:30:00.000Z');
       const input1 = 'Tomás';
       let result = ohce.init({ time, input: input1 });
-      expect(result[0]).to.equal(`${greetings.morning} ${input1}`);
+      expect(result.output[0]).to.equal(`${greetings.morning} ${input1}`);
       const secondOhce = new Ohce();
       const input2 = 'Torralvo';
       result = secondOhce.init({ time, input: input2 });
-      expect(result[0]).to.equal(`${greetings.morning} ${input2}`);
+      expect(result.output[0]).to.equal(`${greetings.morning} ${input2}`);
     });
   });
 
@@ -68,18 +68,18 @@ describe('ohce tests', () => {
 
     it(`Return a word reversed - ${w1}`, () => {
       const result = ohce.talk({ word: w1 });
-      expect(result[0]).to.equal(w1.split('').reverse().join(''));
+      expect(result.output[0]).to.equal(w1.split('').reverse().join(''));
     });
 
     it('Return a word reversed - echo', () => {
       const result = ohce.talk({ word: w2 });
-      expect(result[0]).to.equal(w2.split('').reverse().join(''));
+      expect(result.output[0]).to.equal(w2.split('').reverse().join(''));
     });
 
     it(`If is a Palindrome ${keyWords.palindromeResp} is included at the end`, () => {
       const result = ohce.talk({ word: palindrome });
-      expect(result[0]).to.equal('oso');
-      expect(result[1]).to.equal(keyWords.palindromeResp);
+      expect(result.output[0]).to.equal('oso');
+      expect(result.output[1]).to.equal(keyWords.palindromeResp);
     });
   });
 
@@ -89,7 +89,7 @@ describe('ohce tests', () => {
       const input1 = 'Tomás';
       ohce.init({ time, input: input1 });
       const result = ohce.talk({ word: keyWords.stop });
-      expect(result[0]).to.equal(`${keyWords.bye} ${input1}`);
+      expect(result.output[0]).to.equal(`${keyWords.bye} ${input1}`);
     });
   });
 
