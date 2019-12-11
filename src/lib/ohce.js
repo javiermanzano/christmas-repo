@@ -8,6 +8,13 @@ const greetings = {
   night: 'Buenos días',
 };
 
+const keyWords = {
+  palindromeResp: '¡Bonita Palabra!',
+  stop: 'Stop!',
+  bye: 'Adios',
+};
+
+
 class Ohce {
   constructor() {
     this.name = '';
@@ -24,6 +31,15 @@ class Ohce {
     return NIGHT;
   }
 
+  static talk({ word }) {
+    let output = '';
+    output = [word.split('').reverse().join('')];
+    if (word === output[0]) {
+      output.push(keyWords.palindromeResp);
+    }
+    return output;
+  }
+
   init({ time, input }) {
     this.name = input;
     return [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`];
@@ -33,5 +49,6 @@ class Ohce {
 
 module.exports = {
   greetings,
+  keyWords,
   Ohce,
 };
