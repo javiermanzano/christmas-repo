@@ -31,18 +31,22 @@ class Ohce {
     return NIGHT;
   }
 
-  static talk({ word }) {
+  init({ time, input }) {
+    this.name = input;
+    return [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`];
+  }
+
+  talk({ word }) {
     let output = '';
+    if (word === keyWords.stop) {
+      output = [`${keyWords.bye} ${this.name}`];
+      return output;
+    }
     output = [word.split('').reverse().join('')];
     if (word === output[0]) {
       output.push(keyWords.palindromeResp);
     }
     return output;
-  }
-
-  init({ time, input }) {
-    this.name = input;
-    return [`${greetings[Ohce.getDaytime({ time })]} ${this.name}`];
   }
 }
 

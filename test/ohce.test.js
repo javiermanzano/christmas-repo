@@ -61,19 +61,29 @@ describe('ohce tests', () => {
     const palindrome = 'oso';
 
     it(`Return a word reversed - ${w1}`, () => {
-      const result = Ohce.talk({ word: w1 });
+      const result = ohce.talk({ word: w1 });
       expect(result[0]).to.equal(w1.split('').reverse().join(''));
     });
 
     it('Return a word reversed - echo', () => {
-      const result = Ohce.talk({ word: w2 });
+      const result = ohce.talk({ word: w2 });
       expect(result[0]).to.equal(w2.split('').reverse().join(''));
     });
 
     it(`If is a Palindrome ${keyWords.palindromeResp} is included at the end`, () => {
-      const result = Ohce.talk({ word: palindrome });
+      const result = ohce.talk({ word: palindrome });
       expect(result[0]).to.equal('oso');
       expect(result[1]).to.equal(keyWords.palindromeResp);
+    });
+  });
+
+  describe('Say goodbay correctly', () => {
+    it(`Return ${keyWords.bye} when user insert ${keyWords.stop}`, () => {
+      const time = new Date('2019-12-10T10:30:00.000Z');
+      const input1 = 'Tomás';
+      ohce.init({ time, input: input1 });
+      const result = ohce.talk({ word: keyWords.stop });
+      expect(result[0]).to.equal(`${keyWords.bye} ${input1}`);
     });
   });
 });
