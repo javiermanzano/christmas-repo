@@ -60,6 +60,12 @@ describe('ohce tests', () => {
     const w2 = 'echo';
     const palindrome = 'oso';
 
+    beforeEach(() => {
+      const time = new Date('2019-12-10T10:30:00.000Z');
+      const input1 = 'Tomás';
+      ohce.init({ time, input: input1 });
+    });
+
     it(`Return a word reversed - ${w1}`, () => {
       const result = ohce.talk({ word: w1 });
       expect(result[0]).to.equal(w1.split('').reverse().join(''));
@@ -84,6 +90,17 @@ describe('ohce tests', () => {
       ohce.init({ time, input: input1 });
       const result = ohce.talk({ word: keyWords.stop });
       expect(result[0]).to.equal(`${keyWords.bye} ${input1}`);
+    });
+  });
+
+  describe('Launch an error if ohce does not init before', () => {
+    it(`Say ${keyWords.noNameError} if ohce does not init before`, () => {
+      try {
+        ohce.talk({ word: keyWords.stop });
+      } catch (e) {
+        expect(e).to.be.an('error');
+        expect(e.message).to.be.equal(keyWords.noNameError);
+      }
     });
   });
 });

@@ -12,12 +12,13 @@ const keyWords = {
   palindromeResp: '¡Bonita Palabra!',
   stop: 'Stop!',
   bye: 'Adios',
+  noNameError: 'You must introduce before',
 };
 
 
 class Ohce {
   constructor() {
-    this.name = '';
+    this.name = undefined;
   }
 
   static getDaytime({ time }) {
@@ -37,6 +38,9 @@ class Ohce {
   }
 
   talk({ word }) {
+    if (!this.name) {
+      throw new Error(keyWords.noNameError);
+    }
     let output = '';
     if (word === keyWords.stop) {
       output = [`${keyWords.bye} ${this.name}`];
