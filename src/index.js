@@ -8,6 +8,7 @@ const answer = (r) => r.reduce((acc, curr, i) => {
 
 const print = (responses) => console.log(answer(responses.output));
 
+
 const input = process.argv[2];
 
 const ohce = new Ohce();
@@ -25,16 +26,15 @@ const questions = [
   },
 ];
 
-var ohceLoop = (question) => {
-  return inquirer
-    .prompt(question)
-    .then((answers) => {
-      const response = ohce.talk({ word: answers.ohce });
-      print(response);
-      if (!response.stop) {
-        return ohceLoop(questions);
-      }
-    });
-}
+const ohceLoop = (question) => inquirer
+  .prompt(question)
+  .then((answers) => {
+    const response = ohce.talk({ word: answers.ohce });
+    print(response);
+    if (!response.stop) {
+      return ohceLoop(questions);
+    }
+    return false;
+  });
 
 ohceLoop(questions);

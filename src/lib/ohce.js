@@ -44,14 +44,13 @@ class Ohce {
     let output = '';
     if (word === keyWords.stop) {
       output = [`${keyWords.bye} ${this.name}`];
-      console.log('stop word')
       return { output, stop: true };
     }
     output = [word.split('').reverse().join('')];
     if (word === output[0]) {
       output.push(keyWords.palindromeResp);
     }
-    return { output, stop: false} ;
+    return { output, stop: false };
   }
 }
 
