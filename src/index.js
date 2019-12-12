@@ -22,14 +22,14 @@ print(initResp);
 const questions = [
   {
     type: 'input',
-    name: 'ohce',
+    name: '$',
   },
 ];
 
 const ohceLoop = (question) => inquirer
   .prompt(question)
   .then((answers) => {
-    const response = ohce.talk({ word: answers.ohce });
+    const response = ohce.talk({ word: answers['$'] });
     print(response);
     if (!response.stop) {
       return ohceLoop(questions);
