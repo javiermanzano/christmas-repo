@@ -14,9 +14,9 @@ yarn bundle
 Anyways three different versions have been created and are available in the root of the project and are ready to use:
 
 ```
-ohce-christmas-linux
-ohce-christmas-macos
-ohce-christmas-win.exe
+./ohce-christmas-linux
+./ohce-christmas-macos
+./ohce-christmas-win.exe
 ```
 
 # Kata statement
@@ -40,7 +40,7 @@ When you introduce a palindrome, **ohce** likes it and after reverse-echoing it,
 This is an example of using **ohce** during the morning:
 
 ```
-$ **ohce** Pedro
+$ ohce Pedro
 > ¡Buenos días Pedro!
 $ hola
 > aloh
