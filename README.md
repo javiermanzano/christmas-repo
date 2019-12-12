@@ -3,20 +3,27 @@
 
 # How to generate executable and run it
 
-You have just to run
+You have just to run (2 options)
 
+Install Globally:
+```
+npm ohce-christmas-g -g
+ohce <YOUR_NAME>
+```
+
+Create a binary:
 ```
 npm install -g pkg
 yarn bundle
-./ohce-christmas-macos Torralvo
+./ohce-christmas-g-macos Torralvo
 ```
 
 Anyways three different versions have been created and are available in the root of the project and are ready to use:
 
 ```
-./ohce-christmas-linux
-./ohce-christmas-macos
-./ohce-christmas-win.exe
+./ohce-christmas-g-linux
+./ohce-christmas-g-macos
+./ohce-christmas-g-win.exe
 ```
 
 # Kata statement

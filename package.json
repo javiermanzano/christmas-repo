@@ -1,14 +1,16 @@
 {
-  "name": "ohce-christmas",
-  "version": "1.0.0",
+  "name": "ohce-christmas-g",
+  "version": "1.1.0",
   "description": "",
-  "main": "index.js",
-  "bin": "./src/index.js",
+  "main": "./src/bin/index.js",
+  "bin": {
+    "ohce": "./src/bin/index.js"
+  },
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test/**/*.test.js",
     "test:watch": "./node_modules/mocha/bin/mocha ./test/**/*.test.js --watch",
     "lint": "eslint --ext .js src",
-    "ohce": "node ./src/index.js",
+    "ohce": "node ./src/bin/index.js",
     "bundle": "pkg ."
   },
   "repository": {
