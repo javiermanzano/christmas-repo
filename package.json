@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "./src/index.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test/**/*.test.js",
     "test:watch": "./node_modules/mocha/bin/mocha ./test/**/*.test.js --watch",
     "lint": "eslint --ext .js src",
-    "ohce": "node ./src/index.js"
+    "ohce": "node ./src/index.js",
+    "bundle": "pkg ."
   },
   "repository": {
     "type": "git",

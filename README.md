@@ -1,6 +1,26 @@
 
 # OHCE by @jmtorralvo & @jmanzano
 
+# How to generate executable and run it
+
+You have just to run
+
+```
+npm install -g pkg
+yarn bundle
+./ohce-christmas-macos Torralvo
+```
+
+Anyways three different versions have been created and are available in the root of the project and are ready to use:
+
+```
+ohce-christmas-linux
+ohce-christmas-macos
+ohce-christmas-win.exe
+```
+
+# Kata statement
+
 **ohce** is a console application that echoes the reverse of what you input through the console.
 
 Even though it seems a silly application, **ohce** knows a thing or two.
