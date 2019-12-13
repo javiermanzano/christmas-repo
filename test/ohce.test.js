@@ -55,33 +55,88 @@ describe('ohce tests', () => {
     });
   });
 
-  describe('Return the correct word', () => {
-    const w1 = 'Minessota';
-    const w2 = 'echo';
-    const palindrome = 'oso';
 
+  describe('Checking the right behaviour of core service', () => {
     beforeEach(() => {
       const time = new Date('2019-12-10T10:30:00.000Z');
       const input1 = 'Tomás';
       ohce.init({ time, input: input1 });
     });
 
-    it(`Return a word reversed - ${w1}`, () => {
-      const result = ohce.talk({ word: w1 });
-      expect(result.output[0]).to.equal(w1.split('').reverse().join(''));
+    describe('Return the correct word', () => {
+      const w1 = 'Minessota';
+      const w2 = 'echo';
+      const palindrome1 = 'Never odd or even';
+      const palindrome2 = 'Eva, can I stab bats in a cave?';
+
+      it(`Return a word reversed - ${w1}`, () => {
+        const result = ohce.talk({ word: w1 });
+        expect(result.output[0]).to.equal(w1.split('').reverse().join(''));
+      });
+
+      it('Return a word reversed - echo', () => {
+        const result = ohce.talk({ word: w2 });
+        expect(result.output[0]).to.equal(w2.split('').reverse().join(''));
+      });
+
+      it(`If is a Palindrome ${keyWords.palindromeResp} is included at the end`, () => {
+        const result = ohce.talk({ word: palindrome1 });
+        expect(result.output[0]).to.equal(palindrome1.split('').reverse().join(''));
+        expect(result.output[1]).to.equal(keyWords.palindromeResp);
+      });
+
+      it(`If is a Palindrome ${keyWords.palindromeResp} is included at the end`, () => {
+        const result = ohce.talk({ word: palindrome2 });
+        expect(result.output[0]).to.equal(palindrome2.split('').reverse().join(''));
+        expect(result.output[1]).to.equal(keyWords.palindromeResp);
+      });
     });
 
-    it('Return a word reversed - echo', () => {
-      const result = ohce.talk({ word: w2 });
-      expect(result.output[0]).to.equal(w2.split('').reverse().join(''));
+    describe('isPalindrome static service works fine', () => {
+      const palin1 = 'Oso';
+      const palin2 = "Madam, in Eden I'm Adam";
+      const noPalin = 'Manzano';
+
+      it(`${palin1} must return true`, () => {
+        expect(Ohce.isPalindrome({ str: palin1 })).to.be.equal(true);
+      });
+      it(`${palin2} must return true`, () => {
+        expect(Ohce.isPalindrome({ str: palin2 })).to.be.equal(true);
+      });
+      it(`${noPalin} must return false`, () => {
+        expect(Ohce.isPalindrome({ str: noPalin })).to.be.equal(false);
+      });
     });
 
-    it(`If is a Palindrome ${keyWords.palindromeResp} is included at the end`, () => {
-      const result = ohce.talk({ word: palindrome });
-      expect(result.output[0]).to.equal('oso');
-      expect(result.output[1]).to.equal(keyWords.palindromeResp);
+    describe('Avoid corner cases detecting palindrome', () => {
+      const w1 = '';
+      const w2 = 'pp';
+      const w3 = '     ';
+      const palindrome = 'A man, a plan, a canal: Panama!';
+
+      it(`${w1} must not be a palindrome`, () => {
+        const result = ohce.talk({ word: w1 });
+        expect(result.output).to.have.length(1);
+      });
+
+      it(`${w2} must not be a palindrome`, () => {
+        const result = ohce.talk({ word: w2 });
+        expect(result.output).to.have.length(1);
+      });
+
+      it(`${w3} must not be a palindrome`, () => {
+        const result = ohce.talk({ word: w3 });
+        expect(result.output).to.have.length(1);
+      });
+
+      it(`${palindrome} must be a palindrome`, () => {
+        const result = ohce.talk({ word: palindrome });
+        expect(result.output).to.have.length(2);
+        expect(result.output[1]).to.be.equal(keyWords.palindromeResp);
+      });
     });
   });
+
 
   describe('Say goodbay correctly', () => {
     it(`Return ${keyWords.bye} when user insert ${keyWords.stop}`, () => {

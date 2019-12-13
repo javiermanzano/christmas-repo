@@ -21,6 +21,16 @@ class Ohce {
     this.name = undefined;
   }
 
+  static isPalindrome({ str }) {
+    if (str.trim().length < 3) {
+      return false;
+    }
+    const regEx = /[^A-Za-z0-9]/g;
+    const cleanStr = str.toLowerCase().replace(regEx, '');
+    const revStr = cleanStr.split('').reverse().join('');
+    return revStr === cleanStr;
+  }
+
   static getDaytime({ time }) {
     const hour = time.getHours();
     if (hour >= 6 && hour < 12) {
@@ -47,7 +57,7 @@ class Ohce {
       return { output, stop: true };
     }
     output = [word.split('').reverse().join('')];
-    if (word === output[0]) {
+    if (Ohce.isPalindrome({ str: word })) {
       output.push(keyWords.palindromeResp);
     }
     return { output, stop: false };
